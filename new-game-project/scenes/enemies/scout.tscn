@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://cpfvu6gh8gcwq"]
+
+[ext_resource type="Texture2D" uid="uid://dodurqyroyjnx" path="res://graphics/enemies/scout.png" id="1_i70sm"]
+[ext_resource type="Script" uid="uid://b2tfktlr5mfnb" path="res://scenes/enemies/scout.gd" id="1_ns734"]
+[ext_resource type="Shader" uid="uid://fmwlh5r75k2l" path="res://scenes/enemies/scout.gdshader" id="2_08kc0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t8bpu"]
+shader = ExtResource("2_08kc0")
+shader_parameter/color = Color(0.6884926, 0.93652886, 0.99130815, 1)
+shader_parameter/progress = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ns734"]
+radius = 47.010635
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_08kc0"]
+radius = 723.6187
+
+[node name="Scout" type="CharacterBody2D" unique_id=1622338306 groups=["Enemies"]]
+collision_layer = 2
+collision_mask = 13
+script = ExtResource("1_ns734")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=949853857]
+material = SubResource("ShaderMaterial_t8bpu")
+position = Vector2(18, 27)
+rotation = 1.5707964
+texture = ExtResource("1_i70sm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=97830738]
+position = Vector2(-18, 2)
+shape = SubResource("CircleShape2D_ns734")
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=1184277613]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=672711736]
+shape = SubResource("CircleShape2D_08kc0")
+
+[node name="LaserSpawnPositions" type="Node2D" parent="." unique_id=121976241]
+
+[node name="Marker2D" type="Marker2D" parent="LaserSpawnPositions" unique_id=158945573]
+position = Vector2(117, -25)
+
+[node name="Marker2D2" type="Marker2D" parent="LaserSpawnPositions" unique_id=735958296]
+position = Vector2(121, 13)
+
+[node name="Timers" type="Node2D" parent="." unique_id=1774598124]
+
+[node name="Timer" type="Timer" parent="Timers" unique_id=1842963143]
+wait_time = 0.5
+
+[node name="LaserCooldown" type="Timer" parent="Timers" unique_id=1223315828]
+
+[node name="FlashTimer" type="Timer" parent="Timers" unique_id=1123975813]
+wait_time = 0.1
+
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="body_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
+[connection signal="timeout" from="Timers/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timers/LaserCooldown" to="." method="_on_laser_cooldown_timeout"]
+[connection signal="timeout" from="Timers/FlashTimer" to="." method="_on_flash_timer_timeout"]

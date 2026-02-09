@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://5s7gwe4n5ubi"]
+
+[ext_resource type="Script" uid="uid://dl1b4vojjnp54" path="res://scenes/objects/item_container.gd" id="1_ika2y"]
+
+[node name="ItemContainer" type="StaticBody2D" unique_id=2115512563 groups=["Containers"]]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_ika2y")
+
+[node name="BaseSprite" type="Sprite2D" parent="." unique_id=790713073]
+
+[node name="LidSprite" type="Sprite2D" parent="." unique_id=1748500875]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1969699932]
+
+[node name="SpawnPositions" type="Node2D" parent="." unique_id=1765307940]
+
+[node name="Marker2D" type="Marker2D" parent="SpawnPositions" unique_id=1181627016]
+
+[node name="Marker2D2" type="Marker2D" parent="SpawnPositions" unique_id=1674276851]
+
+[node name="Marker2D3" type="Marker2D" parent="SpawnPositions" unique_id=301860073]

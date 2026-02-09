@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cmy8yef3b7cwi"]
+
+[ext_resource type="Script" uid="uid://d0uxnbthg3y1d" path="res://scenes/objects/gate.gd" id="1_sb1ok"]
+[ext_resource type="Texture2D" uid="uid://dpvblge1kofi8" path="res://graphics/objects/gate.png" id="2_33swo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qkig8"]
+size = Vector2(1124.6511, 212)
+
+[node name="Gate" type="StaticBody2D" unique_id=1935773457]
+script = ExtResource("1_sb1ok")
+
+[node name="Gate" type="Sprite2D" parent="." unique_id=416472128]
+position = Vector2(-3.000001, -159)
+scale = Vector2(1.4253521, 1.212676)
+texture = ExtResource("2_33swo")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1057886452]
+position = Vector2(29.000061, 407)
+scale = Vector2(1.4253521, 1.212676)
+polygon = PackedVector2Array(-387.97437, 310.05804, -389.37753, 197.90942, -374.64432, 152.55518, -343.07318, 132.76422, -234.32813, 132.76422, 413.9328, 132.76422, 451.11658, 155.02902, 471.46243, 211.1034, 467.25296, 254.80835, 469.3577, 309.23346, 1324.585, 310.05804, 1389.1304, 290.26715, 1444.5553, 255.633, 1492.2628, 201.20789, 1527.3419, 128.64111, 1537.1641, 68.443665, 1538.5671, -1246.0046, -1460.6919, -1246.0046, -1457.8855, 70.092896, -1448.765, 128.64111, -1431.927, 173.99536, -1408.0732, 209.4541, -1379.3085, 238.31592, -1338.6168, 274.5993, -1293.014, 292.74103, -1228.4685, 309.23346)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1834627278]
+position = Vector2(-1.4999928, -16)
+scale = Vector2(0.99230766, 1)
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=113315598]
+position = Vector2(78.100784, 704)
+shape = SubResource("RectangleShape2D_qkig8")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

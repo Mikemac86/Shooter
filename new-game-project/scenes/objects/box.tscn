@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://wr4gxqunqjmt"]
+
+[ext_resource type="PackedScene" uid="uid://5s7gwe4n5ubi" path="res://scenes/objects/item_container.tscn" id="1_tf0hf"]
+[ext_resource type="Script" uid="uid://dpfgwihqnxiy3" path="res://scenes/objects/box.gd" id="2_fjwrh"]
+[ext_resource type="Texture2D" uid="uid://cp7k5qtl2dudo" path="res://graphics/objects/base.png" id="3_vfogt"]
+[ext_resource type="Texture2D" uid="uid://cng4yishxd3tt" path="res://graphics/objects/Boxlid.png" id="4_fjwrh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjwrh"]
+size = Vector2(403, 178)
+
+[node name="Box" unique_id=2115512563 instance=ExtResource("1_tf0hf")]
+script = ExtResource("2_fjwrh")
+
+[node name="BaseSprite" parent="." index="0" unique_id=790713073]
+texture = ExtResource("3_vfogt")
+
+[node name="LidSprite" parent="." index="1" unique_id=1748500875]
+texture = ExtResource("4_fjwrh")
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=1969699932]
+position = Vector2(0.5, 2)
+shape = SubResource("RectangleShape2D_fjwrh")
+
+[node name="Marker2D" parent="SpawnPositions" parent_id_path=PackedInt32Array(1765307940) index="0" unique_id=1181627016]
+position = Vector2(92, 0)
+
+[node name="Marker2D3" parent="SpawnPositions" parent_id_path=PackedInt32Array(1765307940) index="2" unique_id=301860073]
+position = Vector2(-105, 0)

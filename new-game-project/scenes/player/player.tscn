@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://d1w5ccem33kle"]
+
+[ext_resource type="Texture2D" uid="uid://2n5mfldwcme8" path="res://graphics/player/player.png" id="1_dovo2"]
+[ext_resource type="Script" uid="uid://bx3wrlsuru4py" path="res://scenes/player/player.gd" id="1_gmlin"]
+[ext_resource type="Shader" uid="uid://csboqlve37t25" path="res://scenes/player/player.gdshader" id="1_lvxji"]
+[ext_resource type="Texture2D" uid="uid://pjapcvgnlf00" path="res://graphics/decals/white.png" id="3_gmlin"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lvxji"]
+shader = ExtResource("1_lvxji")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/progress = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dovo2"]
+radius = 58.00862
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dovo2"]
+
+[sub_resource type="Gradient" id="Gradient_gmlin"]
+colors = PackedColorArray(9.103771, 17.166601, 18.297369, 1, 1, 1, 1, 0.25882354)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lvxji"]
+gradient = SubResource("Gradient_gmlin")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lvxji"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(100, 0, 0)
+spread = 98.28
+gravity = Vector3(0, -98, 0)
+scale_min = 0.19999999
+scale_max = 1.5
+color = Color(0.5686275, 1, 1, 1)
+color_ramp = SubResource("GradientTexture1D_lvxji")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gmlin"]
+polygon = PackedVector2Array(-88, -28, -84, -38, -72, -45, -65, -44, -60, -50, -49, -54, -44, -51, -35, -56, -27, -55, -14, -57, 0, -46, 8, -37, 8, -33, 13, -27, 24, -23, 40, -8, 52, -8, 62, -1, 72, 0, 77, 5, 87, 6, 88, 11, 95, 10, 98, 23, 94, 35, 86, 35, 87, 40, 75, 38, 62, 48, 61, 55, 26, 55, 26, 44, 6, 43, -3, 49, -10, 50, -24, 59, -47, 65, -66, 60, -72, 50, -87, 30, -87, 20, -91, 13, -96, 3, -94, -6, -94, -18, -89, -25)
+
+[node name="Player" type="CharacterBody2D" unique_id=2088626356 groups=["Player"]]
+position = Vector2(0, -1)
+collision_mask = 31
+script = ExtResource("1_gmlin")
+
+[node name="PlayerImage" type="Sprite2D" parent="." unique_id=1273301210]
+material = SubResource("ShaderMaterial_lvxji")
+position = Vector2(2, 4)
+rotation = 1.5707964
+texture = ExtResource("1_dovo2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1219891035]
+position = Vector2(-36, 1)
+shape = SubResource("CircleShape2D_dovo2")
+
+[node name="LaserTimer" type="Timer" parent="." unique_id=1808524385]
+wait_time = 0.5
+one_shot = true
+
+[node name="GrenadeTimer" type="Timer" parent="." unique_id=204625849]
+wait_time = 2.0
+one_shot = true
+
+[node name="HitTimer" type="Timer" parent="." unique_id=1325159194]
+wait_time = 0.1
+
+[node name="LaserArea2D" type="Area2D" parent="." unique_id=481516448]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LaserArea2D" unique_id=1392943898]
+position = Vector2(98, 24)
+shape = SubResource("CapsuleShape2D_dovo2")
+
+[node name="LaserStartPosition" type="Node2D" parent="." unique_id=540483010]
+position = Vector2(1, 3)
+rotation = 1.5707964
+
+[node name="Marker2D" type="Marker2D" parent="LaserStartPosition" unique_id=1649065172]
+position = Vector2(21, -92)
+
+[node name="Marker2D2" type="Marker2D" parent="LaserStartPosition" unique_id=1294236532]
+position = Vector2(27, -92)
+
+[node name="Marker2D3" type="Marker2D" parent="LaserStartPosition" unique_id=1810129446]
+position = Vector2(14, -92)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=660818610]
+position = Vector2(97, 25)
+scale = Vector2(2.1599975, 9.724562)
+emitting = false
+texture = ExtResource("3_gmlin")
+lifetime = 0.38
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_lvxji")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1782400485]
+occluder = SubResource("OccluderPolygon2D_gmlin")
+
+[connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
+[connection signal="timeout" from="GrenadeTimer" to="." method="_on_grenade_timer_timeout"]
+[connection signal="timeout" from="HitTimer" to="." method="_on_hit_timer_timeout"]

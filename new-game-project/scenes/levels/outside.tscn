@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://duyk3qhhnwid0"]
+
+[ext_resource type="PackedScene" uid="uid://dxon0mk8dgivo" path="res://scenes/levels/level.tscn" id="1_2s4ok"]
+[ext_resource type="Texture2D" uid="uid://wvnq82hqa0lg" path="res://graphics/ground/stones.png" id="2_ti38e"]
+[ext_resource type="Script" uid="uid://dpgwdl771aanc" path="res://scenes/levels/outside.gd" id="2_tn0yi"]
+[ext_resource type="PackedScene" uid="uid://cmy8yef3b7cwi" path="res://scenes/objects/gate.tscn" id="2_x73sx"]
+[ext_resource type="Texture2D" uid="uid://bq5ayq18l7pbq" path="res://graphics/decals/dirt_patch.png" id="3_tn0yi"]
+[ext_resource type="Texture2D" uid="uid://cglbo0ikqy14r" path="res://graphics/decals/blood.png" id="4_xorrk"]
+[ext_resource type="Texture2D" uid="uid://clw4l4bvo2nhr" path="res://graphics/tilesets/outside_walls.png" id="5_wq65m"]
+[ext_resource type="Texture2D" uid="uid://c7shvj3xlt2y8" path="res://graphics/tilesets/soil.png" id="6_qvsb0"]
+[ext_resource type="PackedScene" uid="uid://b5ufijvcwe20j" path="res://scenes/objects/house.tscn" id="7_xqqjy"]
+[ext_resource type="PackedScene" uid="uid://dajdoxm6uldgs" path="res://scenes/objects/steam_vent.tscn" id="8_ex6t8"]
+[ext_resource type="PackedScene" uid="uid://cpfvu6gh8gcwq" path="res://scenes/enemies/scout.tscn" id="11_xorrk"]
+[ext_resource type="PackedScene" uid="uid://cffu2sganoymb" path="res://scenes/enemies/bug.tscn" id="12_wq65m"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x30qc"]
+resource_name = "walls"
+texture = ExtResource("5_wq65m")
+texture_region_size = Vector2i(390, 390)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-59.630157, -59.630157, 195, -65.90701, 195, 62.768585, -62.768585, 62.768585)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-195, -56.491714, 195, -65.90701, 195, 62.768585, -195, 56.49173)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(59.630157, 59.630157, -195, 65.90701, -195, -62.768585, 62.768585, -62.768585)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-53.353302, -59.630157, 69.04544, -59.630157, 62.768585, 195, -53.353302, 195)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(195, 56.491714, 56.49173, 53.35327, 56.49173, 195, -62.768585, 195, -65.90701, -62.768585, 195, -62.768585)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-56.491714, 195, -53.35327, 56.49173, -195, 56.49173, -195, -62.768585, 62.768585, -65.90701, 62.768585, 195)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(56.491714, -195, 65.90701, 195, -62.768585, 195, -56.49173, -195)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(56.491714, -195, 53.35327, -56.49173, 195, -56.49173, 195, 62.768585, -62.768585, 65.90701, -62.768585, -195)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-195, -56.491714, -56.49173, -53.35327, -56.49173, -195, 62.768585, -195, 65.90701, 62.768585, -195, 62.768585)
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(53.353302, 59.630157, -69.04544, 59.630157, -62.768585, -195, 53.353302, -195)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uaeil"]
+resource_name = "soil"
+texture = ExtResource("6_qvsb0")
+texture_region_size = Vector2i(390, 390)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_bjulg"]
+tile_size = Vector2i(390, 390)
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 11
+sources/0 = SubResource("TileSetAtlasSource_x30qc")
+sources/1 = SubResource("TileSetAtlasSource_uaeil")
+
+[node name="Outside" unique_id=144900603 instance=ExtResource("1_2s4ok")]
+script = ExtResource("2_tn0yi")
+
+[node name="soil" type="Sprite2D" parent="Ground" parent_id_path=PackedInt32Array(2000864038) index="0" unique_id=1691296625]
+texture_repeat = 2
+position = Vector2(930, 321)
+texture = ExtResource("2_ti38e")
+region_enabled = true
+region_rect = Rect2(0, 0, 1000000, 1000000)
+
+[node name="decoration" type="Sprite2D" parent="Ground/soil" index="0" unique_id=777686442]
+modulate = Color(1, 0.7882353, 0.5058824, 1)
+position = Vector2(-1099, 247)
+texture = ExtResource("3_tn0yi")
+
+[node name="Blood2" type="Sprite2D" parent="Ground" parent_id_path=PackedInt32Array(2000864038) index="1" unique_id=511620882]
+position = Vector2(2068, 1195)
+texture = ExtResource("4_xorrk")
+
+[node name="TileMap" type="TileMap" parent="Ground" parent_id_path=PackedInt32Array(2000864038) index="2" unique_id=1241050651]
+position = Vector2(81, 7)
+tile_set = SubResource("TileSet_bjulg")
+format = 2
+layer_0/name = "Soil"
+layer_0/tile_data = PackedInt32Array(5, 131073, 2, -65532, 1, 0, 4, 1, 2, -65531, 131073, 0, 0, 1, 0, 65536, 1, 1, 131072, 1, 1, 196608, 1, 1, 196609, 65537, 1, 131073, 65537, 1, 65537, 65537, 1, 1, 65537, 0, 2, 131073, 0, 65538, 131073, 1, 131074, 131073, 1, 196610, 131073, 1)
+layer_1/name = "Walls"
+layer_1/tile_data = PackedInt32Array(-3, 65536, 1, -65536, 131072, 2, -65534, 65536, 2, -65533, 65536, 0, -65532, 65536, 0, -131072, 65536, 1, -131070, 131072, 1, -131071, 65536, 0, 65533, 0, 2, 131069, 0, 2, 196605, 0, 2, 262141, 65536, 2, 262142, 65536, 0, 262143, 65536, 0, 196608, 65536, 0, 196609, 65536, 0, 196610, 65536, 0, 196611, 65536, 0, 196612, 65536, 0, 196613, 65536, 0, 196614, 65536, 0, 196615, 65536, 0, 196616, 65536, 0, 196617, 65536, 0, 196618, 65536, 0, 196619, 65536, 0, 196620, 65536, 0, 196621, 65536, 0, 196622, 131072, 2, 131086, 0, 2, 65550, 0, 2, 14, 0, 2, -65522, 131072, 1, -65530, 131072, 0, -65531, 65536, 0, -65525, 65536, 0, -65524, 65536, 0, -65523, 65536, 0, -65526, 0, 0)
+
+[node name="Blood" type="Sprite2D" parent="Ground" parent_id_path=PackedInt32Array(2000864038) index="3" unique_id=1935039325]
+position = Vector2(1230, 280)
+texture = ExtResource("4_xorrk")
+
+[node name="House" parent="Ground" parent_id_path=PackedInt32Array(2000864038) index="4" unique_id=2026117431 instance=ExtResource("7_xqqjy")]
+position = Vector2(-2654, -2739)
+
+[node name="SteamVent" parent="Ground" parent_id_path=PackedInt32Array(2000864038) index="5" unique_id=169540466 instance=ExtResource("8_ex6t8")]
+position = Vector2(1593, 600)
+
+[node name="Gate" parent="Items" parent_id_path=PackedInt32Array(1841138687) index="0" unique_id=1935773457 instance=ExtResource("2_x73sx")]
+position = Vector2(3272, -1031)
+
+[node name="Scout" parent="Enemies" parent_id_path=PackedInt32Array(2032809497) index="0" unique_id=1622338306 instance=ExtResource("11_xorrk")]
+position = Vector2(4127, 610)
+collision_mask = 11
+
+[node name="Bug" parent="Enemies" parent_id_path=PackedInt32Array(2032809497) index="1" unique_id=1870523157 instance=ExtResource("12_wq65m")]
+position = Vector2(2653.9998, 979.99994)
+
+[node name="Player" parent="." index="6" unique_id=258117993]
+position = Vector2(3338, 104)
+metadata/_edit_group_ = true
+
+[connection signal="body_entered" from="Ground/House" to="Ground/House" method="_on_body_entered"]
+[connection signal="player_entered" from="Ground/House" to="." method="_on_house_player_entered"]
+[connection signal="player_exited" from="Ground/House" to="." method="_on_house_player_exited"]
+[connection signal="player_entered_gate" from="Items/Gate" to="." method="_on_gate_player_entered_gate"]
