@@ -15,16 +15,13 @@ var item_scene: PackedScene = preload("res://items/item.tscn")
 
 func _ready():
 	
-	for scout in get_tree().get_nodes_in_group("Enemies"):
-		scout.connect("laser", Callable(self, "_on_scout_laser"))
-
 	# Connect containers
 	for container in get_tree().get_nodes_in_group("Containers"):
 		container.connect("open", _on_container_opened)
 
 	# Connect scouts
-	for scout in get_tree().get_nodes_in_group("Scouts"):
-		scout.connect("laser", Callable(self, "_on_player_laser"))
+	for scout in get_tree().get_nodes_in_group("Enemies"):
+		scout.connect("laser", Callable(self, "_on_scout_laser"))
 
 
 

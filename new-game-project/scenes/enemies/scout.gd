@@ -48,7 +48,9 @@ func hit():
 		$Timers/FlashTimer.start()
 		
 	if health <= 0:
-		queue_free()
+		can_laser = false
+		can_take_dmg = false
+		$Explosion/AnimationPlayer.play("explosion")
 		
 		
 
